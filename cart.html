@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Canteen Connect</title>
+    <link rel="stylesheet" href="src/css/phone-frame.css">
+    <link rel="stylesheet" href="src/css/cart-style.css">
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen-container">
+            <header class="cart-header">
+                <button class="back-btn" onclick="location.href='menu.html'">←</button>
+                <h3>รายการที่เลือก</h3>
+                <div style="width: 30px;"></div>
+            </header>
+
+            <div class="cart-content">
+                <div id="cart-items-list"></div>
+            </div>
+
+            <footer class="cart-footer">
+                <div class="summary-row">
+                    <span>ยอดรวมทั้งหมด</span>
+                    <h2 id="total-price">0.-</h2>
+                </div>
+                <button class="confirm-btn" onclick="confirmOrder()">ยืนยันการสั่งซื้อ</button>
+            </footer>
+        </div>
+    </div>
+
+    <script src="src/js/cart-logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Canteen Connect</title>
+    <link rel="stylesheet" href="src/css/phone-frame.css">
+    <link rel="stylesheet" href="src/css/menu-style.css">
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen-container">
+            
+            <header class="menu-header">
+                <div class="header-main">
+                    <div class="user-meta">
+                        <span class="welcome-text">กินอะไรดี,</span>
+                        <h2 id="display-name">คุณนักศึกษา</h2>
+                        <div class="location-container">
+                            <div class="location-selector" onclick="toggleDropdown()">
+                                <span id="active-canteen">โรงอาหารสระแก้ว</span>
+                                <span class="chevron" id="drop-arrow">▼</span>
+                            </div>
+                            <div class="canteen-dropdown" id="canteen-list"></div>
+                        </div>
+                    </div>
+                    <div class="cart-control" onclick="viewCart()">
+                        <div class="cart-icon">🛒</div>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </div>
+                <div class="category-bar">
+                    <button class="cat-item active" onclick="selectCategory('ทั้งหมด', this)">ทั้งหมด</button>
+                    <button class="cat-item" onclick="selectCategory('จานเดียว', this)">จานเดียว</button>
+                    <button class="cat-item" onclick="selectCategory('เส้น', this)">เส้น</button>
+                    <button class="cat-item" onclick="selectCategory('ของหวาน', this)">ของหวาน</button>
+                </div>
+            </header>
+
+            <div class="scroll-view">
+                <section class="promo-section">
+                    <div class="promo-track" id="promo-slider"></div>
+                </section>
+
+                <section class="food-display-area">
+                    <div class="sub-section">
+                        <h3 class="sub-title">เมนูยอดฮิต Top 5</h3>
+                        <div class="top-5-scroll" id="top-5-list"></div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 class="sub-title">ร้านค้าในโรงอาหาร</h3>
+                        <div class="shop-horizontal-list" id="shop-list"></div>
+                    </div>
+
+                    <div class="sub-section">
+                        <h3 class="sub-title">เมนูทั้งหมด</h3>
+                        <div class="menu-grid" id="full-menu-grid"></div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="sheet-overlay" class="sheet-overlay" onclick="closeShopSheet()"></div>
+            <div id="shop-sheet" class="bottom-sheet">
+                <div class="sheet-handle" onclick="closeShopSheet()"></div>
+                <div id="shop-sheet-content">
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="src/js/menu-logic.js"></script>
+</body>
+</html>

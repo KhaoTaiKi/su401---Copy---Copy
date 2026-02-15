@@ -1,0 +1,42 @@
+:root {
+    --app-primary: #10b981;
+    --text-main: #1e293b;
+    --app-bg: #f8fafc;
+}
+
+::-webkit-scrollbar { display: none; }
+* { box-sizing: border-box; scrollbar-width: none; }
+
+.screen-container { background: white; display: flex; flex-direction: column; height: 100%; overflow-x: hidden; }
+
+.cart-header { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; background: white; flex-shrink: 0; }
+.back-btn { background: none; border: none; font-size: 24px; cursor: pointer; }
+
+.cart-content { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 15px; background: var(--app-bg); width: 100%; }
+
+/* ✨ ส่วนที่เพิ่ม: การจัดกลุ่มร้านค้า */
+.shop-group-container {
+    background: white; border-radius: 20px; padding: 15px; margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid #f1f5f9;
+}
+
+.shop-group-header { font-weight: 800; color: var(--text-main); font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+
+.cart-item-card { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed #f1f5f9; }
+.item-info h4 { margin: 0; font-size: 13px; color: var(--text-main); }
+.item-info span { color: var(--app-primary); font-weight: bold; font-size: 12px; }
+
+.stepper { display: flex; align-items: center; gap: 10px; background: #f1f5f9; padding: 4px 8px; border-radius: 8px; }
+.step-btn { background: white; border: none; width: 22px; height: 22px; border-radius: 4px; cursor: pointer; font-weight: bold; display: flex; justify-content: center; align-items: center; }
+
+/* ✨ ช่องหมายเหตุแยกตามร้าน */
+.shop-notes-area { margin-top: 15px; }
+.shop-notes-area input {
+    width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #e2e8f0;
+    font-size: 12px; background: #f8fafc; outline: none;
+}
+.shop-notes-area input:focus { border-color: var(--app-primary); }
+
+.cart-footer { padding: 20px; border-top: 1px solid #f1f5f9; background: white; flex-shrink: 0; }
+.summary-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.confirm-btn { width: 100%; padding: 16px; background: var(--app-primary); color: white; border: none; border-radius: 15px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }

@@ -1,0 +1,16 @@
+:root {
+    --primary-color: #2ecc71;
+    --primary-dark: #27ae60;
+}
+.login-wrapper { display: flex; flex-direction: column; justify-content: center; min-height: 100%; padding: 20px; }
+.login-box { background: white; padding: 30px 20px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.app-title { color: var(--primary-color); margin: 0 0 5px 0; }
+.input-field { text-align: left; margin-bottom: 15px; }
+.input-field input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ddd; outline: none; }
+.btn-primary { width: 100%; padding: 14px; background: var(--primary-color); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+.btn-sso { width: 100%; padding: 12px; border: 2px solid var(--primary-color); background: white; color: var(--primary-color); border-radius: 12px; font-weight: 600; cursor: pointer; }
+.overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 100; border-radius: 35px; }
+.spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.modal-box { background: white; padding: 30px 20px; border-radius: 20px; width: 80%; text-align: center; }
+.status-icon { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; color: white; background: var(--primary-color); font-size: 30px; }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Connect</title>
+    
+    <link rel="stylesheet" href="src/css/phone-frame.css">
+    <link rel="stylesheet" href="src/css/login-page.css">
+</head>
+<body>
+
+    <div class="phone-frame">
+        <div class="screen-container">
+            <div class="app-content-area">
+                <div class="login-wrapper">
+                    <div class="login-box">
+                        <h1 class="app-title">Canteen Connect</h1>
+                        <p class="app-subtitle">เข้าสู่ระบบเพื่อสั่งอาหารออนไลน์</p>
+                        <div class="input-field">
+                            <label>ชื่อผู้ใช้งาน / รหัสนักศึกษา</label>
+                            <input type="text" id="username" placeholder="6XXXXXXX" value="65000001">
+                        </div>
+                        <div class="input-field">
+                            <label>รหัสผ่าน</label>
+                            <input type="password" id="password" placeholder="••••••••" value="1234">
+                        </div>
+                        <button class="btn-primary" onclick="handleLogin()">เข้าสู่ระบบ</button>
+                        <div class="divider">หรือ</div>
+                        <button class="btn-sso" onclick="handleSSOLogin()">SU Smart Plus</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingOverlay" class="overlay">
+                <div class="spinner"></div>
+                <div id="loadingText" class="loading-text">กำลังตรวจสอบข้อมูล...</div>
+            </div>
+
+            <div id="statusModal" class="overlay modal-bg">
+                <div class="modal-box">
+                    <div id="modalIcon" class="status-icon success-icon">✓</div>
+                    <h3 id="modalTitle">สำเร็จ!</h3>
+                    <p id="modalMessage">เข้าสู่ระบบเรียบร้อย</p>
+                    <button class="btn-close" onclick="closeModal()">ตกลง</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/login-logic.js"></script>
+</body>
+</html>
