@@ -18,6 +18,14 @@
 
             <div class="cart-content">
                 <div id="cart-items-list"></div>
+                
+                <div class="payment-section shop-group-container">
+                    <div class="shop-group-header">💰 วิธีการชำระเงิน</div>
+                    <div class="dining-options">
+                        <button class="option-btn active" id="pay-cash" onclick="selectPayment('เงินสด')">เงินสด</button>
+                        <button class="option-btn" id="pay-prompt" onclick="selectPayment('PromptPay')">PromptPay</button>
+                    </div>
+                </div>
             </div>
 
             <footer class="cart-footer">
@@ -25,11 +33,19 @@
                     <span>ยอดรวมทั้งหมด</span>
                     <h2 id="total-price">0.-</h2>
                 </div>
-                <button class="confirm-btn" onclick="confirmOrder()">ยืนยันการสั่งซื้อ</button>
+                <button class="confirm-btn" onclick="confirmOrder()">ชำระเงินและสั่งซื้อ</button>
             </footer>
+
+            <div id="success-overlay" class="modal-overlay">
+                <div class="success-modal">
+                    <div class="success-icon">✅</div>
+                    <h2 id="success-msg">ชำระเงินสำเร็จ!</h2>
+                    <p>ระบบกำลังพาคุณไปหน้าติดตามอาหาร</p>
+                    <button class="modal-btn" onclick="goToStatus()">ตกลง</button>
+                </div>
+            </div>
         </div>
     </div>
-
     <script src="src/js/cart-logic.js"></script>
 </body>
 </html>

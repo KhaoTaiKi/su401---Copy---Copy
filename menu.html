@@ -64,8 +64,16 @@
             <div id="sheet-overlay" class="sheet-overlay" onclick="closeShopSheet()"></div>
             <div id="shop-sheet" class="bottom-sheet">
                 <div class="sheet-handle" onclick="closeShopSheet()"></div>
-                <div id="shop-sheet-content">
-                    </div>
+                <div id="shop-sheet-content"></div>
+            </div>
+
+            <div id="notif-overlay" class="notif-modal-overlay">
+                <div class="notif-modal">
+                    <div class="notif-icon">🔔</div>
+                    <h2>อาหารเสร็จแล้ว!</h2>
+                    <div id="ready-shops-list" class="ready-list"></div>
+                    <button class="notif-btn" onclick="goToStatus()">ไปรับอาหาร</button>
+                </div>
             </div>
 
         </div>

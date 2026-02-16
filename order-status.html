@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status - Canteen Connect</title>
+    <link rel="stylesheet" href="src/css/phone-frame.css">
+    <link rel="stylesheet" href="src/css/order-status.css">
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen-container">
+            <header class="status-header">
+                <h3>สถานะการสั่งซื้อ</h3>
+            </header>
+
+            <div class="status-content">
+                <div class="queue-card">
+                    <span>หมายเลขคิวของคุณ</span>
+                    <h1 id="display-q">#000</h1>
+                    <div id="packaging-badge" class="badge">---</div>
+                </div>
+
+                <div class="tracking-list">
+                    <div class="track-item active" id="s1">
+                        <div class="track-dot"></div>
+                        <div class="track-text">
+                            <p class="title">รับออเดอร์แล้ว</p>
+                            <p class="desc">ร้านค้ากำลังตรวจสอบรายการ</p>
+                        </div>
+                    </div>
+                    <div class="track-line"></div>
+                    <div class="track-item" id="s2">
+                        <div class="track-dot"></div>
+                        <div class="track-text">
+                            <p class="title">กำลังปรุงอาหาร</p>
+                            <p class="desc">เชฟกำลังเตรียมความอร่อยให้คุณ</p>
+                        </div>
+                    </div>
+                    <div class="track-line"></div>
+                    <div class="track-item" id="s3">
+                        <div class="track-dot"></div>
+                        <div class="track-text">
+                            <p class="title">อาหารเสร็จแล้ว</p>
+                            <p class="desc">โปรดไปรับอาหารที่หน้าร้านค้า</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary-box">
+                    <p class="summary-label">สรุปรายการของคุณ</p>
+                    <div id="order-items-summary"></div>
+                </div>
+            </div>
+
+            <footer class="status-footer">
+                <button class="home-btn" onclick="location.href='menu.html'">กลับไปหน้าหลัก</button>
+            </footer>
+        </div>
+    </div>
+    <script src="src/js/order-status.js"></script>
+</body>
+</html>
