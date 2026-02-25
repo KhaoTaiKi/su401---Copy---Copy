@@ -5,11 +5,11 @@ SU401.../
 ├── README.md
 └── src/
     ├── css/
-    │   ├── login-page.css   # [ไฟล์ที่ผมลืม]
+    │   ├── login-page.css  
     │   ├── menu-style.css
     │   ├── cart-style.css
     │   └── phone-frame.css
     └── js/
-        ├── login-logic.js   # [ไฟล์ที่ผมลืม]
+        ├── login-logic.js   
         ├── menu-logic.js
         └── cart-logic.js
