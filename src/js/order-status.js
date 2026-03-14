@@ -52,7 +52,7 @@ function renderOrders() {
     }
 
     container.innerHTML = listToRender.map(order => {
-        const optionMap = { 'eat-in': 'กินที่นี่', 'take-out': 'หิ้วจาน', 'bag': 'ใส่ถุง' };
+        const optionMap = { 'eat-in': 'กินที่นี่', 'take-out': 'จานพลาสติก', 'bag': 'ใส่ถุง' };
         const diningText = optionMap[order.items[0].diningOption] || 'กินที่นี่';
         const dateStr = new Date(order.timestamp).toLocaleString('th-TH');
 
