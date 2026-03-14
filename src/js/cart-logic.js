@@ -47,7 +47,7 @@ function renderCart() {
                 </div>
                 <div class="dining-options">
                     <button class="option-btn ${currentOption === 'eat-in' ? 'active' : ''}" onclick="updateDiningOption('${shopName}', 'eat-in')">กินที่นี่</button>
-                    <button class="option-btn ${currentOption === 'take-out' ? 'active' : ''}" onclick="updateDiningOption('${shopName}', 'take-out')">หิ้วจาน (+5)</button>
+                    <button class="option-btn ${currentOption === 'take-out' ? 'active' : ''}" onclick="updateDiningOption('${shopName}', 'take-out')">จานพลาสติก (+5)</button>
                     <button class="option-btn ${currentOption === 'bag' ? 'active' : ''}" onclick="updateDiningOption('${shopName}', 'bag')">ใส่ถุง (+5)</button>
                 </div>
                 <div class="shop-notes-area"><input type="text" placeholder="หมายเหตุถึงร้าน ${shopName}..." value="${groupedCart[shopName][0].shopNotes || ''}" onchange="updateShopNotes('${shopName}', this.value)"></div>
