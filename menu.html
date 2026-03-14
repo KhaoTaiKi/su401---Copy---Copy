@@ -22,12 +22,18 @@
                                 <span id="active-canteen">โรงอาหารสระแก้ว</span>
                                 <span class="chevron" id="drop-arrow">▼</span>
                             </div>
+                            <div id="seat-status" class="seat-status good">🪑 ที่นั่งว่าง: 24/50</div>
                             <div class="canteen-dropdown" id="canteen-list"></div>
                         </div>
                     </div>
-                    <div class="cart-control" onclick="viewCart()">
-                        <div class="cart-icon">🛒</div>
-                        <span class="cart-count" id="cart-count">0</span>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="history-control" onclick="viewHistory()">
+                            <div class="history-icon">📜</div>
+                        </div>
+                        <div class="cart-control" onclick="viewCart()">
+                            <div class="cart-icon">🛒</div>
+                            <span class="cart-count" id="cart-count">0</span>
+                        </div>
                     </div>
                 </div>
                 <div class="category-bar">

@@ -20,6 +20,38 @@ let currentSlideIndex = 1;
 const FULL_STEP = 280; 
 let isTransitioning = false;
 
+// ✨ ส่วนที่เพิ่ม: ข้อมูลจำลองจำนวนที่นั่งว่างของแต่ละโรงอาหาร
+const seatDataMock = {
+    'sakaeo': { available: 24, total: 50 },
+    'phetcharat': { available: 5, total: 40 }, // ใกล้เต็ม
+    'ml-pin': { available: 45, total: 60 },
+    'engineering': { available: 0, total: 20 } // เต็มแล้ว
+};
+
+// ✨ ส่วนที่เพิ่ม: ฟังก์ชันอัปเดตป้ายที่นั่งและเปลี่ยนสี
+function updateSeatStatus(canteenId) {
+    const seatElement = document.getElementById('seat-status');
+    if (!seatElement) return;
+
+    // ดึงข้อมูล ถ้าไม่มี id นี้ให้สุ่มเอา
+    const data = seatDataMock[canteenId] || { available: Math.floor(Math.random() * 30), total: 30 };
+    
+    // เปลี่ยนสีตามอัตราส่วนที่นั่ง
+    seatElement.className = 'seat-status'; // ล้าง class เดิม
+    const ratio = data.available / data.total;
+
+    if (ratio > 0.4) {
+        seatElement.classList.add('good');
+        seatElement.innerHTML = `🪑 ที่นั่งว่าง: ${data.available}/${data.total}`;
+    } else if (ratio > 0) {
+        seatElement.classList.add('warning');
+        seatElement.innerHTML = `🪑 ที่นั่งว่าง: ${data.available}/${data.total} (ใกล้เต็ม)`;
+    } else {
+        seatElement.classList.add('danger');
+        seatElement.innerHTML = `🪑 ที่นั่งเต็ม! (${data.total}/${data.total})`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const savedName = localStorage.getItem('userName') || 'นักศึกษา';
     document.getElementById('display-name').innerText = savedName;
@@ -30,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     refreshAppData();
     enableWheelScroll('shop-list');
     enableWheelScroll('top-5-list');
+
+    // ✨ ให้โชว์ที่นั่งของโรงอาหารเริ่มต้นทันที
+    updateSeatStatus(currentCanteen.id);
 
     // ✨ เริ่มระบบเฝ้าดูสถานะออเดอร์เบื้องหลัง
     setInterval(watchOrdersStatus, 3000);
@@ -89,25 +124,39 @@ function addToCart(name, price, shopName) {
     updateBadge();
 }
 
+// ✨ แก้ไข: ฟังก์ชันอัปเดตตัวเลขแจ้งเตือน (ให้กรองเฉพาะออเดอร์ที่ยังไม่เสร็จ)
 function updateBadge() {
     const cartBtn = document.querySelector('.cart-control');
     const badge = document.getElementById('cart-count');
     if (!cartBtn || !badge) return;
-    const activeOrders = JSON.parse(localStorage.getItem('activeOrders')) || [];
+    
+    // ดึงออเดอร์มา และกรองเอาเฉพาะที่ isCompleted เป็น false หรือไม่มีค่า (ยังทำไม่เสร็จ)
+    const allOrders = JSON.parse(localStorage.getItem('activeOrders')) || [];
+    const activeOrders = allOrders.filter(o => !o.isCompleted); 
+    
     const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    
     if (totalQty > 0) {
+        // มีของในตะกร้า
         cartBtn.innerHTML = `🛒 <span id="cart-count" class="cart-count">${totalQty}</span>`;
         cartBtn.onclick = () => window.location.href = 'cart.html';
     } else if (activeOrders.length > 0) {
+        // มีออเดอร์รอคิว -> ✨ แก้ไข: พอกดแล้วให้แนบคำว่า ?tab=active ไปที่ URL ด้วย
         cartBtn.innerHTML = `⏳ <span id="cart-count" class="cart-count">${activeOrders.length}</span>`;
-        cartBtn.onclick = () => window.location.href = 'order-status.html';
+        cartBtn.onclick = () => window.location.href = 'order-status.html?tab=active';
     } else {
+        // ตะกร้าว่าง และไม่มีคิว
         cartBtn.innerHTML = `🛒 <span id="cart-count" class="cart-count">0</span>`;
         cartBtn.onclick = () => window.location.href = 'cart.html';
     }
 }
 
 function viewCart() { window.location.href = 'cart.html'; }
+
+// ✨ แก้ไข: ฟังก์ชันปุ่มประวัติคำสั่งซื้อ พอกดแล้วให้แนบคำว่า ?tab=history ไปที่ URL
+function viewHistory() { 
+    window.location.href = 'order-status.html?tab=history'; 
+}
 
 function openShopSheet(shopId) {
     const sheet = document.getElementById('shop-sheet');
@@ -138,4 +187,14 @@ function updatePos(ani) { const t = document.getElementById('promo-slider'); con
 function nextPromo() { if (!isTransitioning) { isTransitioning = true; currentSlideIndex++; updatePos(true); } }
 function toggleDropdown() { document.getElementById('canteen-list').classList.toggle('show'); document.getElementById('drop-arrow').classList.toggle('rotate'); }
 function renderCanteenList() { document.getElementById('canteen-list').innerHTML = canteens.map(c => `<div class="canteen-item ${c.id === currentCanteen.id ? 'selected' : ''}" onclick="selectCanteen('${c.id}')">${c.name} ${c.id === currentCanteen.id ? '✓' : ''}</div>`).join(''); }
-function selectCanteen(id) { currentCanteen = canteens.find(c => c.id === id); document.getElementById('active-canteen').innerText = currentCanteen.name; toggleDropdown(); renderCanteenList(); refreshAppData(); }
+
+function selectCanteen(id) { 
+    currentCanteen = canteens.find(c => c.id === id); 
+    document.getElementById('active-canteen').innerText = currentCanteen.name; 
+    toggleDropdown(); 
+    renderCanteenList(); 
+    refreshAppData(); 
+    
+    // ✨ เรียกใช้งานฟังก์ชันอัปเดตที่นั่งตรงนี้
+    updateSeatStatus(id);
+}
